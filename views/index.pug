@@ -3,3 +3,17 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  h1 Items on Hand!
+
+  if error 
+    p error loading items 
+  else 
+    p The Warehouse has the following items on hand! 
+
+    ul
+      each category in categories
+        li
+          a(href=category.url) #{category.name}
+      else 
+        li There are no items for sale!

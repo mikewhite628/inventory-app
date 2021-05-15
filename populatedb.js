@@ -70,13 +70,13 @@ function itemCreate(name, category, price, description, onHand, cb) {
 function createItems(cb){
     async.parallel([
         function(callback){
-            itemCreate('Test Item Name Here', [categories[2],], 500, 'A test piece of hardware that cost $500', 5, callback)
+            itemCreate('League Of Legends', [categories[2],], 1000, 'The worlds most popular pc gmae!', 5, callback)
         },
         function(callback){
-            itemCreate('Another Test Item', [categories[3],], 2.25, 'A test float price component that cost $2.25', 5, callback)
+            itemCreate('Legend of Zelda: Breath of the Wild', [categories[0],], 59.99, 'Best Zelda of all time! 10/10!', 3, callback)
         },
         function(callback){
-            itemCreate('A new test guitar', [categories[0],], 73.25, 'A Guitar thats pretty cool to play', 5, callback)
+            itemCreate('Final Fantasy 7 Remake', [categories[1],], 73.25, 'A great remaster of the best Final Fantasy esperince to date!', 1, callback)
         },
         ], 
         cb);
@@ -85,16 +85,13 @@ function createItems(cb){
 function createCategories(cb){
     async.parallel([
         function(callback){
-            categoryCreate('Instrument', callback)
+            categoryCreate('Nintendo Switch', callback)
         },
         function(callback){
-            categoryCreate('Accessory', callback)
+            categoryCreate('PlayStation', callback)
         },
         function(callback){
-            categoryCreate('Hardware', callback)
-        },
-        function(callback){
-            categoryCreate('Component', callback)
+            categoryCreate('PC', callback)
         },
         ], 
         cb);

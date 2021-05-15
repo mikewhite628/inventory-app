@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  h1= item.name
+
+  if error 
+    p error loading items 
+  else 
+    dl
+      each item in category_items
+        dt 
+          a(href=item.url) #{item.name}
+        dd $#{item.price}

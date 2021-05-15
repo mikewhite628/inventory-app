@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  h1= item.name
+  p= item.description
+
+  each category in item.category
+    li
+      a(href=category.url) #{category.name}
