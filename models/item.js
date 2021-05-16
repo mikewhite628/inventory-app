@@ -7,7 +7,7 @@ var ItemSchema = new Schema({
     name: {type: String, required: true, maxLength: 100},
     category: [{type: Schema.Types.ObjectId, ref: 'Category'}],
     price: {type: Schema.Types.Decimal128, required: true},
-    description: {type: String, required: true, maxLength: 500},
+    description: {type: String, required: true},
     onHand: {type: Number}
 });
 

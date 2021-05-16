@@ -8,7 +8,6 @@ block content
     p error loading items 
   else 
     dl
-      each item in item_list
+      each item in categories
         dt 
           a(href=item.url) #{item.name}
-        dd $#{item.price}
