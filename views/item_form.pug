@@ -17,7 +17,7 @@ block content
             label(for=category._id) #{category.name}
     div.form-group 
       label(for='price')
-      input#price.form-control(type='number', placeholder='Price', name='price', required='true' value=(undefined===item ? '' : item.price))
+      input#price.form-control(type='float', placeholder='Price', name='price', required='true' value=(undefined===item ? '' : item.price))
     div.form-group  
       label(for='description')
       input#description.form-control(type='textarea', name='description' placeholder='A brief description of the item' value=(undefined===item ? '' : item.description))
@@ -30,4 +30,6 @@ block content
     ul
       for error in errors
         li!= error.msg
+
+  
       

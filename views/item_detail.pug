@@ -10,3 +10,9 @@ block content
   each category in item.category
     li
       a(href=category.url) #{category.name}
+
+  hr 
+  p 
+    a(href=item.url+'/delete') Delete Item
+  p
+    a(href=item.url+'/update') Update Item
