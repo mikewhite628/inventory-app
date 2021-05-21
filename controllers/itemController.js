@@ -3,6 +3,24 @@ var Category = require('../models/category');
 var async = require('async');
 const { body, validationResult } = require('express-validator');
 const { find } = require('../models/category');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (request, file, callback){
+        callback(null, './public/images');
+    },
+
+    filename: function (request, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    },
+});
+
+const upload = multer({
+    storage,
+    limits: {
+        filseSize: '8mb'
+    },
+});
 
 //Display item list
 exports.index = function(req,res, next) {
@@ -64,6 +82,8 @@ exports.item_create_get = function(req, res, next){
 
 exports.item_create_post = [
 
+    upload.single('avatar'),
+
     (req, res, next) => {
         if(!(req.body.category instanceof Array)){
             if(typeof req.body.category === 'undefined')
@@ -79,6 +99,8 @@ exports.item_create_post = [
     body('price', 'Price required').trim().isLength({ min: 1}).escape(),
     body('description', 'Description required').trim().isLength({min: 1}).escape(),
     body('onHand', 'On hand quantitty is required').trim().isLength({ min: 1}).escape(),
+
+    
     
     (req, res, next) => {
         const errors = validationResult(req);
@@ -88,7 +110,8 @@ exports.item_create_post = [
             category: req.body.category,
             price: req.body.price,
             description: req.body.description,
-            onHand: req.body.onHand
+            onHand: req.body.onHand,
+            avatar: req?.file?.path,
         });
         
         if (!errors.isEmpty()){

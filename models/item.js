@@ -8,7 +8,8 @@ var ItemSchema = new Schema({
     category: [{type: Schema.Types.ObjectId, ref: 'Category'}],
     price: {type: Schema.Types.Decimal128, required: true},
     description: {type: String, required: true},
-    onHand: {type: Number}
+    onHand: {type: Number},
+    avatar: {type: String}
 });
 
 ItemSchema

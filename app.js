@@ -5,6 +5,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var multer = require('multer')
 
 
 var indexRouter = require('./routes/index');
@@ -22,6 +23,17 @@ db.on('error', console.error.bind(console,'Mongo DB Connection Error'))
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+var storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, 'uploads');
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.fieldname + "-" + Date.now());
+  }
+});
+
+var upload = multer({ storage: storage })
 
 app.use(logger('dev'));
 app.use(express.json());
