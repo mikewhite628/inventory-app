@@ -5,7 +5,7 @@ block content
   p Welcome to #{title}
 
   h1= item.name
-  img(src='/'+item.avatar alt='ff8 logo')
+  img.avatar(src= `/images/${item.avatar}` alt='ff8 logo')
   p= item.description
   p $#{item.price}
 

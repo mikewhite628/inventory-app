@@ -5,6 +5,7 @@ block content
   p Welcome to #{title}
 
   h1 #{category.name} Games 
+  img(src=`/images/${category.image}`)
 
   if error 
     p error loading items 
@@ -15,6 +16,7 @@ block content
           a(href=item.url) #{item.name}
         dd #{item.description}
         dd #{item.price}
+        img.avatar(src=`/images/${item.avatar}`)
 
   hr
   p 

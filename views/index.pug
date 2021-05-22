@@ -14,6 +14,7 @@ block content
     ul
       each category in categories
         li
+          img.avatar(src=`/images/${category.image}`)
           a(href=category.url) #{category.name}
       else 
         li There are no items for sale!

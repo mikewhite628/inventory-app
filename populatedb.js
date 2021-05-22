@@ -27,7 +27,10 @@ var items = []
 var categories = []
 
 function categoryCreate(name, cb){
-    var category = new Category({name: name})
+    var category = new Category({
+        name: name,
+        image: ''        
+    })
 
     category.save(function (err) {
         if(err){

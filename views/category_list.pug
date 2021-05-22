@@ -10,4 +10,5 @@ block content
     dl
       each item in categories
         dt 
+          img.avatar(src='/images/'+item.image)
           a(href=item.url) #{item.name}

@@ -9,6 +9,7 @@ block content
   else 
     dl
       each item in item_list
+        img.avatar(src='/images/'+item.avatar)
         dt 
           a(href=item.url) #{item.name}
         dd $#{item.price}

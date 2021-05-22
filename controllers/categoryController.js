@@ -4,6 +4,24 @@ var async = require('async')
 var mongoose = require('mongoose')
 const { body, validationResult } = require('express-validator');
 const { findByIdAndDelete } = require('../models/category');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+    destination: function (request, file, callback){
+        callback(null, './public/images');
+    },
+
+    filename: function (request, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    },
+});
+
+const upload = multer({
+    storage,
+    limits: {
+        filseSize: '8mb'
+    },
+});
 
 exports.category_list = function(req, res){
     Category.find()
@@ -41,12 +59,15 @@ exports.category_create_get = function(req, res){
 
 exports.category_create_post = [
 
+    upload.single('image'),
+
     body('name', 'Category name required').trim().isLength({ min: 1}).escape(),
     (req, res, next) => {
         const errors = validationResult(req);
-        var category = new Category(
-            {name: req.body.name}
-        );
+        var category = new Category({
+            name: req.body.name,
+            image: req?.file?.filename,
+        });
         if (!errors.isEmpty()){
             res.render('category_form', {title: 'Create Category', category: category, errors: errors.array()});
             return;
@@ -88,19 +109,22 @@ exports.category_update_get = function(req, res, next){
 
 exports.category_update_post = [
 
+    upload.single('image'),
+
     body('name', 'Category name required').trim().isLength({ min: 1}).escape(),
     (req, res, next) => {
         const errors = validationResult(req);
         var category = new Category({
                 name: req.body.name,
-                _id: req.params.id 
+                _id: req.params.id,
+                image: req?.file?.filename,
         });
         if (!errors.isEmpty()){
             res.render('category_form', {title: 'Create Category', category: category, errors: errors.array()});
             return;
         }
         else {
-            Category.findOne({ 'name': req.body.name })
+            Category.findOne({ 'name': req.body.name, 'image':req?.file?.filename })
               .exec( function(err, found_category){
                   if (err) { return next(err); }
                   if (found_category){
@@ -135,7 +159,7 @@ exports.category_delete_get = function(req, res){
     })
 };
 
-exports.category_delete_post = function(req, res){
+exports.category_delete_post = function(req, res, next){
     async.parallel({
         category: function(callback){
             Category.findById(req.params.id).exec(callback)
@@ -150,7 +174,7 @@ exports.category_delete_post = function(req, res){
             return;
         }
         else {
-        Category.findByIdAndRemove(req.params.categoryid, function deleteItem(err){
+        Category.findByIdAndRemove(req.body.categoryid, function deleteItem(err){
             if (err){ return next(err); }
             res.redirect('/inventory/category')
         })

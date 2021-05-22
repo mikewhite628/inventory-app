@@ -111,7 +111,7 @@ exports.item_create_post = [
             price: req.body.price,
             description: req.body.description,
             onHand: req.body.onHand,
-            avatar: req?.file?.path,
+            avatar: req?.file?.filename,
         });
         
         if (!errors.isEmpty()){
@@ -172,6 +172,8 @@ exports.item_update_get = function(req, res, next){
 };
 
 exports.item_update_post = [
+
+    upload.single('avatar'),
     
     (req, res, next) => {
         if(!(req.body.category instanceof Array)){
@@ -199,7 +201,8 @@ exports.item_update_post = [
                 price: req.body.price,
                 description: req.body.description,
                 onHand: req.body.onHand,
-                _id: req.params.id
+                _id: req.params.id,
+                avatar: req?.file?.filename,
             });
         if (!errors.isEmpty()){
             async.parallel({
