@@ -11,10 +11,13 @@ block content
   else 
     p The Warehouse has the following items on hand! 
 
-    ul
-      each category in categories
-        li
-          img.avatar(src=`/images/${category.image}`)
-          a(href=category.url) #{category.name}
-      else 
-        li There are no items for sale!
+      ul(class='row')
+        each category in categories
+            li(class='col-lg-6 col-md-4')
+              div(class='card mb-5')
+                img(src=`/images/${category.image}` class='card-img-top img-fluid')
+                div(class='card-body')
+                  h5(class='card-title')
+                    a(href=category.url) #{category.name}
+        else 
+            li There are no items for sale!

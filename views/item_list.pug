@@ -7,9 +7,12 @@ block content
   if error 
     p error loading items 
   else 
-    dl
+    ul(class='row')
       each item in item_list
-        img.avatar(src='/images/'+item.avatar)
-        dt 
-          a(href=item.url) #{item.name}
-        dd $#{item.price}
+        li(class='col-md-6')
+          div(class='card')
+            img(src='/images/'+item.avatar class='card-img-top img-fluid')
+            div(class='card-body')
+              h5(class='card-title')
+                a(href=item.url) #{item.name}
+              p $#{item.price}
