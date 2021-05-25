@@ -3,23 +3,19 @@ extends layout
 block content
   div(class='row')
     img(src='/images/banner.jpg' class='img-fluid')
-  h1= title
-  p Welcome to #{title}
+  h1(style='text-align: center' class='text-shadow')= title
 
-  h1 Systems
+  h4(style='text-align: center') Browse Systems
 
   if error 
     p error loading items 
   else 
-    p The Warehouse has the following items on hand! 
-
-      ul(class='row')
+      ul(class='row no-padding')
         each category in categories
-            li(class='col-lg-6 col-md-4')
+            li(class='col-lg-6 col-md-6')
               div(class='card mb-5')
-                img(src=`/images/${category.image}` class='card-img-top img-fluid')
-                div(class='card-body')
-                  h5(class='card-title')
-                    a(href=category.url) #{category.name}
+                a(href=category.url)
+                  img(src=`/images/${category.image}` class='card-img-top console-logo box-shadow')
+                
         else 
             li There are no items for sale!

@@ -1,17 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
 
-  h1= item.name
-  img.avatar(src= `/images/${item.avatar}` alt='ff8 logo')
-  p= item.description
-  p $#{item.price}
+  h1(style='text-align: center')= item.name
 
-  each category in item.category
-    li
-      a(href=category.url) #{category.name}
+  div(class='row justify-content-center')
+    div(class='col-md-8')
+      div(class='card border-0')
+        img(src= `/images/${item.avatar}` alt='ff8 logo' class='card-img-top img-fluid')
+        div(class='card-body' style='text-align: center')
+          h3(class='card-title') #{item.name}
+          div(class='card-text')
+            p= item.description
+            p $#{item.price}
+
+            each category in item.category
+              li
+                a(href=category.url) #{category.name}
 
   hr 
   p 

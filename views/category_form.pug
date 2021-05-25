@@ -5,12 +5,12 @@ block content
 
   form(method='POST' action='' enctype='multipart/form-data')
     div.form-group
-      label(for='name') Category: 
-      input#name.form-control(type='text', placeholder='Xbox, PSP, Gameboy etc...' name='name' value=(undefined===category ? '' : category.name))
+      label(for='name' class='mb-2') Category: 
+      input#name.form-control(class='mb-3' type='text', placeholder='Xbox, PSP, Gameboy etc...' name='name' value=(undefined===category ? '' : category.name))
     div.form-group
-      label(for='image') Upload Image: 
+      label(for='image' class='mb-2') Upload Image: 
       input#image.form-control(type='file', name='image')
-    button.btn.btn-primary(type='submit') Submit 
+    button.btn.btn-primary(type='submit' class='mt-2') Submit 
 
     if errors 
       ul 
