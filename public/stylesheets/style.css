@@ -6,9 +6,9 @@ body {
 }
 
 a {
-  color: #00B7FF;
-  text-decoration: none;
+  text-decoration: none !important;
 }
+
 
 li {
   list-style-type: none;
@@ -20,7 +20,7 @@ li {
 }
 
 .box-shadow {
-  box-shadow: 1px 1px 5px;
+  box-shadow: 1px 1px 5px #999999;
 }
 
 .text-shadow {
@@ -29,4 +29,12 @@ li {
 
 .no-padding {
   padding: 0;
+}
+
+.grow {
+  transition: all .3s ease-in-out
+}
+
+.grow:hover{
+  transform: scale(1.05);
 }

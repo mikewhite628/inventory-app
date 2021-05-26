@@ -161,9 +161,9 @@ exports.item_update_get = function(req, res, next){
             return next(err);
         }
         for (var all_c_iter = 0; all_c_iter < results.categories.length; all_c_iter++){
-            for (var item_c_iter = 0; item_c_iter < results.item.category; item_c_iter++ ){
-                if (results.category[all_c_iter]._id.toString()===results.item.category[item_c_iter]._id.toString()){
-                    results.category[all_c_iter.checked = 'true']
+            for (var item_c_iter = 0; item_c_iter < results.item.category.length; item_c_iter++ ){
+                if (results.categories[all_c_iter]._id.toString()===results.item.category[item_c_iter]._id.toString()){
+                    results.categories[all_c_iter].checked = 'true'
                 }
             }
         }

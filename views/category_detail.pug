@@ -1,22 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-
-  h1 #{category.name} Games 
-  img(src=`/images/${category.image}`)
+  h1(style='text-align: center') #{category.name} Games 
+  div(class='row justify-content-center')
+    div(class='col-md-6')
+      img(src=`/images/${category.image}` class='img-fluid mb-5 box-shadow')
 
   if error 
     p error loading items 
   else 
-    dl
+    ul(class='row no-padding')
       each item in category_items
-        dt 
-          a(href=item.url) #{item.name}
-        dd #{item.description}
-        dd #{item.price}
-        img.avatar(src=`/images/${item.avatar}`)
+        li(class='col-md-6 grow') 
+          div(class='card border-0')
+            img(src=`/images/${item.avatar}` class='card-img-top box-shadow')
+            div(class='card-body')
+              h3(class='card-title')
+                a(href=item.url) #{item.name}
+              div(class='card-text')
+                p #{item.description}
+                p #{item.price}
+        
 
   hr
   p 

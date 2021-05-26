@@ -8,9 +8,9 @@ block content
   else 
     ul(class='row no-padding')
       each item in item_list
-        li(class='col-md-4')
+        li(class='col-md-4 grow')
           div(class='card mb-3 border-0')
-            img(src='/images/'+item.avatar class='card-img-top img-fluid')
+            img(src='/images/'+item.avatar class='card-img-top img-fluid box-shadow')
             div(class='card-body' style='text-align: center')
               h5(class='card-title')
                 a(href=item.url) #{item.name}

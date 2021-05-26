@@ -7,9 +7,9 @@ block content
   form(method='POST' action='' enctype='multipart/form-data')
     div.form-group
       label(for='name' class='mb-2') Item Name: 
-      input#name.form-control(type='text' placeholder='Video Game Name', name='name' required='true' value=(undefined===item ? '' : item.name))
+      input#name.form-control(type='text' placeholder='Video Game Name', name='name' required='true' class='mb-2' value=(undefined===item ? '' : item.name))
     div.form-group
-      label(for='category')
+      label(class='mb-2') Category
       div
         for category in categories
           div(style='display: inline; padding-right:10px;')
