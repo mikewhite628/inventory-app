@@ -5,7 +5,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var multer = require('multer')
+var multer = require('multer');
+var compression = require('compression');
+var helmet = require('helmet');
 
 
 var indexRouter = require('./routes/index');
@@ -40,7 +42,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(compression());
+app.use(helmet());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
