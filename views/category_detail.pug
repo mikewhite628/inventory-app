@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  h1(style='text-align: center') #{category.name} Games 
+  h1(class="center-text") #{category.name} Games 
   div(class='row justify-content-center')
     div(class='col-md-6')
       img(src=`/images/${category.image}` class='img-fluid mb-5 box-shadow')
@@ -19,11 +19,11 @@ block content
                 a(href=item.url) #{item.name}
               div(class='card-text')
                 p #{item.description}
-                p #{item.price}
+                p $#{item.price}
         
 
   hr
   p 
-    a(href=category.url+'/delete') Delete This Category
+    a(href=category.url+'/delete') Delete This System
   p
-    a(href=category.url+'/update') Update This Category
+    a(href=category.url+'/update') Update This System

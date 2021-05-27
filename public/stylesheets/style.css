@@ -38,3 +38,12 @@ li {
 .grow:hover{
   transform: scale(1.05);
 }
+
+.center-text {
+  text-align: center
+}
+
+.checklist {
+  display: inline; 
+  padding-right:10px
+}

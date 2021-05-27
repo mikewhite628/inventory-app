@@ -45,6 +45,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(compression());
 app.use(helmet());
 
+app.use(
+  helmet.contentSecurityPolicy({
+    useDefaults: true,
+    directives: {
+      "script-src": ["'self'", "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"],
+      "style-src": ["'self'", "https://fonts.googleapis.com/css2family=Odibee+Sans&display=swap", "https://fonts.googleapis.com", "https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css", 'sha256-Y9v1MZrln1N8aPBY5lmpxYKwFkcp/nyBMMEnn7WFjuw='],
+      "font-src": ["'self'", "https://fonts.gstatic.com"],
+      
+    },
+  })
+);
+
+app.disable('x-powered-by')
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/inventory', inventoryRouter)

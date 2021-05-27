@@ -2,11 +2,11 @@ extends layout
 
 block content 
 
-  h1 #{title}: #{item.name}
+  h1(class='center-text') #{title}: #{item.name}
 
-  p Do you really want to delete this item?
+  p(class='center-text')  Do you really want to delete this item?
 
-  form(method='POST' action='')
+  form(method='POST' action='' class='center-text')
     div.form-group
       input#item.id.form-control(type='hidden', name='itemid', required='true', value=item._id)
     button.btn.btn-primary(type='submit') Delete
