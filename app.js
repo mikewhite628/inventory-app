@@ -57,8 +57,6 @@ app.use(
   })
 );
 
-app.disable('x-powered-by')
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/inventory', inventoryRouter)
